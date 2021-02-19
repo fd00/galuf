@@ -1,0 +1,11 @@
+environment:
+  CYGWIN_MIRROR: http://cygwin.mirror.constant.com
+  CYGWIN_NOWINPATH: yes
+  CYGWIN_CACHE: C:\cygwin64\var\cache\setup
+  CYGWIN_ROOT: C:\cygwin64
+cache:
+  - '%CYGWIN_CACHE%'
+install:
+  - 'C:\cygwin64\setup-x86_64.exe -qgnNdO -l "%CYGWIN_CACHE%" -R "%CYGWIN_ROOT%" -s "%CYGWIN_MIRROR%" -P "cygport,git,ruby,util-linux,wget,%CYGWIN_PACKAGES%"'
+build_script:
+  - 'C:\cygwin64\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER && /usr/bin/env ruby ./galuf.rb"'
