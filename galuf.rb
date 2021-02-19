@@ -15,25 +15,33 @@ if new_version.nil?
   exit 1
 end
 
-workdir = File.join(Dir.tmpdir, package)
-FileUtils.rm_rf(workdir)
-Dir.mkdir(workdir)
-Dir.chdir(workdir)
+branch = ENV['BRANCH']
+if branch.nil?
+  branch = 'master'
+end
 
-system('git init')
-system('git config core.sparsecheckout true')
-system('git remote add origin https://github.com/fd00/yacp.git')
-system("echo #{package} > .git/info/sparse-checkout")
-system("git pull --depth=1 origin master")
+Dir.mkdir('galuf')
+Dir.chdir('galuf')
+
+system('git init', exception: true)
+system('git config core.sparsecheckout true', exception: true)
+system('git remote add origin https://github.com/fd00/yacp.git', exception: true)
+system("echo #{package} > .git/info/sparse-checkout", exception: true)
+system("git pull --depth=1 origin #{branch}", exception: true)
 
 Dir.chdir(package)
 
 cygport = Dir.glob('*.cygport')
 unless cygport.length == 1
-  p "*.cygport file must be unique."
+  p '*.cygport file must be unique.'
   exit 1
 end
 cygport = cygport[0]
 version_release = cygport.gsub('.cygport', '').gsub("#{package}-", '')
-system("rename #{version_release} #{new_version}-1bl1 *")
-system("cygport *.cygport all")
+system("rename #{version_release} #{new_version}-1bl1 *", exception: true) unless version_release == "#{new_version}-1bl1"
+system('cygport *.cygport fetch prep', exception: true)
+system("cp README #{package}-#{new_version}-1bl1.x86_64/CYGWIN-PATCHES/", exception: true)
+system('cygport *.cygport compile install package', exception: true)
+
+Dir.chdir('..')
+system("tar cfvz #{package}.tar.gz #{package}")
