@@ -31,6 +31,10 @@ system("git pull --depth=1 origin #{branch}", exception: true)
 
 Dir.chdir(package)
 
+File.open(File.expand_path(File.join(Dir.home, '.cygportrc')), 'w') do |rc|
+  rc.puts('RESTRICT=debuginfo')
+end
+
 cygport = Dir.glob('*.cygport')
 unless cygport.length == 1
   p '*.cygport file must be unique.'
