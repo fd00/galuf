@@ -41,11 +41,15 @@ unless cygport.length == 1
   exit 1
 end
 cygport = cygport[0]
-version_release = cygport.gsub('.cygport', '').gsub("#{package}-", '')
-system("rename #{version_release} #{new_version}-1bl1 *", exception: true) unless version_release == "#{new_version}-1bl1"
-system('cygport *.cygport fetch prep', exception: true)
-system("cp README #{package}-#{new_version}-1bl1.x86_64/CYGWIN-PATCHES/", exception: true)
-system('cygport *.cygport compile install package', exception: true)
+if branch == 'master'
+  version_release = cygport.gsub('.cygport', '').gsub("#{package}-", '')
+  system("rename #{version_release} #{new_version}-1bl1 *", exception: true) unless version_release == "#{new_version}-1bl1"
+  system('cygport *.cygport fetch prep', exception: true)
+  system("cp README #{package}-#{new_version}-1bl1.x86_64/CYGWIN-PATCHES/", exception: true)
+end
+system('cygport *.cygport compile', exception: true)
+system('cygport *.cygport check') # Ignore test result
+system('cygport *.cygport install package', exception: true)
 
 Dir.chdir('..')
 system("tar cfvz #{package}.tar.gz #{package}")

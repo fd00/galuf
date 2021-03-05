@@ -1,5 +1,5 @@
 environment:
-  CYGWIN_MIRROR: http://cygwin.mirror.constant.com
+  CYGWIN_MIRROR: http://cygwin.mirror.constant.com,https://yacp-dist.s3-us-west-2.amazonaws.com
   CYGWIN_NOWINPATH: yes
   CYGWIN_CACHE: C:\cygwin64\var\cache\setup
   CYGWIN_ROOT: C:\cygwin64
