@@ -51,5 +51,11 @@ system('cygport *.cygport compile', exception: true)
 system('cygport *.cygport check') # Ignore test result
 system('cygport *.cygport install package', exception: true)
 
+# normalize symlink
+Dir.chdir("#{package}-#{new_version}-1bl1.x86_64") do
+  system("rm CYGWIN-PATCHES")
+  system("ln -s src/#{package}/CYGWIN-PATCHES .")
+end
+
 Dir.chdir('..')
 system("tar cfvz #{package}.tar.gz #{package}")
