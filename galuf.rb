@@ -59,7 +59,7 @@ end
 
 Dir.chdir('..')
 system("tar cfvz #{package}.tar.gz #{package}")
-system("aws configure set aws_access_key_id #{ENV['AWS_ACCESS_KEY_ID']}")
-system("aws configure set aws_secret_access_key #{ENV['AWS_SECRET_ACCESS_KEY']}")
-system("aws configure set region us-east-2")
-system("aws s3 cp #{package}.tar.gz s3://yacp-appveyor/")
+system("aws configure set aws_access_key_id #{ENV['AWS_ACCESS_KEY_ID']}", exception: true)
+system("aws configure set aws_secret_access_key #{ENV['AWS_SECRET_ACCESS_KEY']}", exception: true)
+system("aws configure set region us-east-2", exception: true)
+system("aws s3 cp #{package}.tar.gz s3://yacp-appveyor/", exception: true)
