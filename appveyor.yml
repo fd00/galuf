@@ -11,6 +11,6 @@ environment:
 cache:
   - '%CYGWIN_CACHE%'
 install:
-  - 'C:\cygwin64\setup-x86_64.exe -qgnNdOX -l "%CYGWIN_CACHE%" -R "%CYGWIN_ROOT%" -s "%CYGWIN_MIRROR%" -s "%CYGWIN_MIRROR2%" -P "cygport,git,ruby,util-linux,wget,%CYGWIN_PACKAGES%"'
+  - 'C:\cygwin64\setup-x86_64.exe -qgnNdOX -l "%CYGWIN_CACHE%" -R "%CYGWIN_ROOT%" -s "%CYGWIN_MIRROR%" -s "%CYGWIN_MIRROR2%" -P "cygport,git,python38-pip,ruby,util-linux,wget,%CYGWIN_PACKAGES%"'
 build_script:
   - 'C:\cygwin64\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER && /usr/bin/env ruby ./galuf.rb"'
