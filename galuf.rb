@@ -54,7 +54,7 @@ system('cygport *.cygport install package', exception: true)
 # normalize symlink
 Dir.chdir("#{package}-#{new_version}-1bl1.x86_64") do
   system("rm CYGWIN-PATCHES")
-  system("ln -s src/#{package}/CYGWIN-PATCHES .")
+  system("ln -s src/*/CYGWIN-PATCHES .", exception: true)
 end
 
 Dir.chdir('..')
