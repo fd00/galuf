@@ -4,6 +4,10 @@ environment:
   CYGWIN_NOWINPATH: yes
   CYGWIN_CACHE: C:\cygwin64\var\cache\setup
   CYGWIN_ROOT: C:\cygwin64
+  AWS_ACCESS_KEY_ID:
+    secure: 7PgQLqyjfanMY8NGRK9mdR68b8IMrSfu94spjggfk6g=
+  AWS_SECRET_ACCESS_KEY:
+    secure: UH+iAvpc4Psr48jdusB+mr9tu0j+woixZvarsUsCjnxZFIJ4vKRjutALpO1y/9Xs
 cache:
   - '%CYGWIN_CACHE%'
 install:

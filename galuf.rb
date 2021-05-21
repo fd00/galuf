@@ -3,18 +3,6 @@
 require 'fileutils'
 require 'tmpdir'
 
-aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
-if aws_access_key_id.nil?
-  p "ENV['AWS_ACCESS_KEY_ID'] must be set."
-  exit 1
-end
-
-aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
-if aws_secret_access_key.nil?
-  p "ENV['AWS_SECRET_ACCESS_KEY'] must be set."
-  exit 1
-end
-
 package = ENV['PACKAGE']
 if package.nil?
   p "ENV['PACKAGE'] must be set."
