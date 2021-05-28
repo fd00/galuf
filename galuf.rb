@@ -48,7 +48,7 @@ if branch == 'master'
   system("cp README #{package}-#{new_version}-1bl1.x86_64/CYGWIN-PATCHES/", exception: true)
 end
 system('cygport *.cygport compile', exception: true)
-system('cygport *.cygport check') # Ignore test result
+system('timeout 15m cygport *.cygport check') # Ignore test result
 system('cygport *.cygport install package', exception: true)
 
 # normalize symlink
