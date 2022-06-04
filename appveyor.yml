@@ -13,10 +13,10 @@ cache:
   - '%CYGWIN_CACHE%'
 init:
   ps: |
-    if ($env:PLATFORM -eq "Win32") {
-      (New-Object Net.WebClient).DownloadFile('https://cygwin.com/setup-x86.exe', 'C:\cygwin\setup-x86.exe')
-    } else {
+    if ($env:CYGWIN_ROOT -eq "C:\cygwin64") {
       (New-Object Net.WebClient).DownloadFile('https://cygwin.com/setup-x86_64.exe', 'C:\cygwin64\setup-x86_64.exe')
+    } else {
+      (New-Object Net.WebClient).DownloadFile('https://cygwin.com/setup-x86.exe', 'C:\cygwin\setup-x86.exe')
     }
 install:
 - cmd: if [%TARGET%]==[cygwin32] (
