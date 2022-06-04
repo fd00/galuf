@@ -1,7 +1,7 @@
 environment:
   CYGWIN_MIRROR: http://cygwin.mirror.constant.com
   CYGWIN_NOWINPATH: yes
-  CYGWIN_PACKAGES: gcc-core,libcrypt-devel,libedit-devel,libffi-devel,libgdbm-devel,libgmp-devel,libintl-devel,libncurses-devel,libreadline-devel,libssl-devel,libuuid-devel,patch,ruby,subversion,tcl-tk-devel,zlib-devel
+  CYGWIN_PACKAGES: gcc-core,libcrypt-devel,libedit-devel,libffi-devel,libgdbm-devel,libgmp-devel,libintl-devel,libncurses-devel,libreadline-devel,libssl-devel,libuuid-devel,libyaml-devel,patch,ruby,subversion,tcl-tk-devel,zlib-devel
   matrix:
   - TARGET: cygwin64
     CYGWIN_CACHE: C:\cygwin64\var\cache\setup
