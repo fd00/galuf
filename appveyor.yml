@@ -1,0 +1,30 @@
+environment:
+  CYGWIN_MIRROR: http://cygwin.mirror.constant.com
+  CYGWIN_NOWINPATH: yes
+  CYGWIN_PACKAGES: gcc-core,libcrypt-devel,libedit-devel,libffi-devel,libgdbm-devel,libgmp-devel,libintl-devel,libncurses-devel,libreadline-devel,libssl-devel,libuuid-devel,patch,ruby,subversion,tcl-tk-devel,zlib-devel
+  matrix:
+  - TARGET: cygwin64
+    CYGWIN_CACHE: C:\cygwin64\var\cache\setup
+    CYGWIN_ROOT: C:\cygwin64
+  - TARGET: cygwin32
+    CYGWIN_CACHE: C:\cygwin\var\cache\setup
+    CYGWIN_ROOT: C:\cygwin
+cache:
+  - '%CYGWIN_CACHE%'
+init:
+  ps: |
+    if ($env:PLATFORM -eq "Win32") {
+      (New-Object Net.WebClient).DownloadFile('https://cygwin.com/setup-x86.exe', 'C:\cygwin\setup-x86.exe')
+    } else {
+      (New-Object Net.WebClient).DownloadFile('https://cygwin.com/setup-x86_64.exe', 'C:\cygwin64\setup-x86_64.exe')
+    }
+install:
+- cmd: if [%TARGET%]==[cygwin32] (
+    C:\cygwin\setup-x86.exe      -qgnNdO -l "%CYGWIN_CACHE%" -R "%CYGWIN_ROOT%" -s "%CYGWIN_MIRROR%" -P "%CYGWIN_PACKAGES%")
+- cmd: if [%TARGET%]==[cygwin64] (
+    C:\cygwin64\setup-x86_64.exe -qgnNdO -l "%CYGWIN_CACHE%" -R "%CYGWIN_ROOT%" -s "%CYGWIN_MIRROR%" -P "%CYGWIN_PACKAGES%")
+build_script:
+- cmd: if [%TARGET%]==[cygwin32] (
+    C:\cygwin\bin\bash   -lc "cd $APPVEYOR_BUILD_FOLDER && ./appveyor.sh" )
+- cmd: if [%TARGET%]==[cygwin64] (
+    C:\cygwin64\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER && ./appveyor.sh" )
