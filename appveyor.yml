@@ -6,9 +6,9 @@ environment:
   - TARGET: cygwin64
     CYGWIN_CACHE: C:\cygwin64\var\cache\setup
     CYGWIN_ROOT: C:\cygwin64
-  - TARGET: cygwin32
-    CYGWIN_CACHE: C:\cygwin\var\cache\setup
-    CYGWIN_ROOT: C:\cygwin
+#  - TARGET: cygwin32
+#    CYGWIN_CACHE: C:\cygwin\var\cache\setup
+#    CYGWIN_ROOT: C:\cygwin
 cache:
   - '%CYGWIN_CACHE%'
 init:
