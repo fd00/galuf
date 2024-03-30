@@ -6,4 +6,4 @@ git log --max-count=1
 ./configure --disable-install-rdoc
 make -j2 V=1
 ./miniruby basictest/test.rb
-make test || true
+make test 
