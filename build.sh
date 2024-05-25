@@ -1,5 +1,5 @@
 #!/bin/bash
-git clone https://github.com/ruby/ruby.git
+git clone --depth=1 https://github.com/ruby/ruby.git
 cd ruby
 git log --max-count=1
 ./autogen.sh

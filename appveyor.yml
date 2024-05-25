@@ -25,6 +25,6 @@ install:
     C:\cygwin64\setup-x86_64.exe -qgnNdO -l "%CYGWIN_CACHE%" -R "%CYGWIN_ROOT%" -s "%CYGWIN_MIRROR%" -P "%CYGWIN_PACKAGES%")
 build_script:
 - cmd: if [%TARGET%]==[cygwin32] (
-    C:\cygwin\bin\bash   -lc "cd $APPVEYOR_BUILD_FOLDER && ./appveyor.sh" )
+    C:\cygwin\bin\bash   -lc "cd $APPVEYOR_BUILD_FOLDER && ./build.sh" )
 - cmd: if [%TARGET%]==[cygwin64] (
-    C:\cygwin64\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER && ./appveyor.sh" )
+    C:\cygwin64\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER && ./build.sh" )

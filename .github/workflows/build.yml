@@ -16,7 +16,7 @@ jobs:
           packages: cygport,git,libcrypt-devel,libedit-devel,libffi-devel,libgdbm-devel,libgmp-devel,libintl-devel,libncurses-devel,libreadline-devel,libssl-devel,libuuid-devel,libyaml-devel,ruby,subversion,tcl-tk-devel,zlib-devel
       - name: Build
         run: |
-          export PATH=/usr/bin:/usr/local/bin:$(cygpath ${SYSTEMROOT})/system32
+          export PATH=/usr/bin
           cd /cygdrive/c/cygwin/tmp
-          bash --noprofile --norc -ex -o igncr -o pipefail /cygdrive/d/a/galuf/galuf/appveyor.sh
+          bash --noprofile --norc -ex -o igncr -o pipefail /cygdrive/d/a/galuf/galuf/build.sh
         shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
