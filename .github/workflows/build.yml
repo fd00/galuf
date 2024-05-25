@@ -1,0 +1,22 @@
+name: build
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cygwin/cygwin-install-action@master
+        with:
+          platform: x86_64
+          packages: cygport,git,libcrypt-devel,libedit-devel,libffi-devel,libgdbm-devel,libgmp-devel,libintl-devel,libncurses-devel,libreadline-devel,libssl-devel,libuuid-devel,libyaml-devel,ruby,subversion,tcl-tk-devel,zlib-devel
+      - name: Build
+        run: |
+          export PATH=/usr/bin:/usr/local/bin:$(cygpath ${SYSTEMROOT})/system32
+          cd /cygdrive/c/cygwin/tmp
+          bash --noprofile --norc -ex -o igncr -o pipefail /cygdrive/d/a/galuf/galuf/appveyor.sh
+        shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'

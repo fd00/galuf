@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash
 git clone https://github.com/ruby/ruby.git
 cd ruby
 git log --max-count=1
