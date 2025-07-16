@@ -12,7 +12,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: cygwin/cygwin-install-action@master
+      - name: Setup Cygwin
+        uses: cygwin/cygwin-install-action@master
         with:
           platform: x86_64
           packages: cygport,git,libcrypt-devel,libedit-devel,libffi-devel,libgdbm-devel,libgmp-devel,libintl-devel,libncurses-devel,libreadline-devel,libssl-devel,libuuid-devel,libyaml-devel,ruby,subversion,tcl-tk-devel,zlib-devel
@@ -20,5 +21,12 @@ jobs:
         run: |
           export PATH=/usr/bin
           cd /cygdrive/c/cygwin/tmp
-          bash --noprofile --norc -ex -o igncr -o pipefail /cygdrive/d/a/galuf/galuf/build.sh
+          git clone --quiet --depth=1 https://github.com/ruby/ruby.git
+          cd ruby
+          git log --max-count=1
+          ./autogen.sh -v
+          ./configure --disable-install-rdoc
+          make -j2 V=1
+          ./miniruby basictest/test.rb
+          make test
         shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
