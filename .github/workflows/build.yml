@@ -27,6 +27,5 @@ jobs:
           ./autogen.sh -v
           ./configure --disable-install-rdoc
           make -j2 V=1
-          ./miniruby basictest/test.rb
           make test
         shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
