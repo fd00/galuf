@@ -11,9 +11,8 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Cygwin
-        uses: cygwin/cygwin-install-action@master
+      - uses: actions/checkout@v5
+      - uses: cygwin/cygwin-install-action@master
         with:
           platform: x86_64
           packages: cygport,git,libcrypt-devel,libedit-devel,libffi-devel,libgdbm-devel,libgmp-devel,libintl-devel,libncurses-devel,libreadline-devel,libssl-devel,libuuid-devel,libyaml-devel,ruby,subversion,tcl-tk-devel,zlib-devel
@@ -25,7 +24,7 @@ jobs:
           cd ruby
           git log --max-count=1
           ./autogen.sh -v
-          ./configure --disable-install-rdoc
+          ./configure
           make -j2 V=1
           make test
         shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
