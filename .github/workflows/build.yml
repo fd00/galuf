@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: cygwin/cygwin-install-action@master
         with:
           platform: x86_64
