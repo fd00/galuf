@@ -26,17 +26,25 @@ jobs:
         shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
       - name: Autogen
         run: |
+          export PATH=/usr/bin
+          cd /cygdrive/c/cygwin/tmp/ruby
           ./autogen.sh -v
         shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
       - name: Configure
         run: |
+          export PATH=/usr/bin
+          cd /cygdrive/c/cygwin/tmp/ruby
           ./configure
         shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
       - name: Build
         run: |
+          export PATH=/usr/bin
+          cd /cygdrive/c/cygwin/tmp/ruby
           make -j2 V=1
         shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
       - name: Test
         run: |
+          export PATH=/usr/bin
+          cd /cygdrive/c/cygwin/tmp/ruby
           make test
         shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
