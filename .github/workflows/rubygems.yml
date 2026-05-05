@@ -15,7 +15,7 @@ jobs:
       - uses: cygwin/cygwin-install-action@master
         with:
           platform: x86_64
-          packages: cygport,git,libcrypt-devel,libedit-devel,libffi-devel,libgdbm-devel,libgmp-devel,libintl-devel,libncurses-devel,libreadline-devel,libssl-devel,libuuid-devel,libyaml-devel,ruby,ruby-devel,rubygems,subversion,tcl-tk-devel,zlib-devel
+          packages: cygport,git,libcrypt-devel,libedit-devel,libffi-devel,libgdbm-devel,libgmp-devel,libintl-devel,libncurses-devel,libreadline-devel,libssl-devel,libuuid-devel,libxml2-devel,libyaml-devel,ruby,ruby-devel,rubygems,subversion,tcl-tk-devel,zlib-devel
       - name: Clone
         run: |
           export PATH=/usr/bin
