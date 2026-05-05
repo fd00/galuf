@@ -1,0 +1,39 @@
+name: rubygems
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 18 * * *'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: cygwin/cygwin-install-action@master
+        with:
+          platform: x86_64
+          packages: cygport,git,libcrypt-devel,libedit-devel,libffi-devel,libgdbm-devel,libgmp-devel,libintl-devel,libncurses-devel,libreadline-devel,libssl-devel,libuuid-devel,libyaml-devel,ruby,rubygems,subversion,tcl-tk-devel,zlib-devel
+      - name: Clone
+        run: |
+          export PATH=/usr/bin
+          cd /cygdrive/c/cygwin/tmp
+          git clone --quiet --depth=1 https://github.com/ruby/rubygems.git
+          cd rubygems
+          git log --max-count=1
+        shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
+      - name: Install Dependencies
+        run: |
+          export PATH=/usr/bin
+          cd /cygdrive/c/cygwin/tmp/rubygems
+          gem install rake
+          bin/rake setup
+        shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
+      - name: Test
+        run: |
+          export PATH=/usr/bin
+          cd /cygdrive/c/cygwin/tmp/rubygems
+          bin/rake test
+        shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
