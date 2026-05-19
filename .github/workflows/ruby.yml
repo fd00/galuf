@@ -15,7 +15,7 @@ jobs:
       - uses: cygwin/cygwin-install-action@master
         with:
           platform: x86_64
-          packages: cygport,git,libcrypt-devel,libedit-devel,libffi-devel,libgdbm-devel,libgmp-devel,libintl-devel,libncurses-devel,libreadline-devel,libssl-devel,libuuid-devel,libyaml-devel,ruby,subversion,tcl-tk-devel,zlib-devel
+          packages: cygport,git,libcrypt-devel,libedit-devel,libffi-devel,libgdbm-devel,libgmp-devel,libintl-devel,libncurses-devel,libreadline-devel,libssl-devel,libuuid-devel,libyaml-devel,ruby,rubygems,subversion,tcl-tk-devel,zlib-devel
       - name: Clone
         run: |
           export PATH=/usr/bin
@@ -35,13 +35,6 @@ jobs:
           export PATH=/usr/bin
           cd /cygdrive/c/cygwin/tmp/ruby
           ./configure
-        shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
-      - name: Extract bundled gems
-        run: |
-          export PATH=/usr/bin
-          cd /cygdrive/c/cygwin/tmp/ruby
-          make -j2 V=1 ruby
-          make     V=1 extract-gems
         shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
       - name: Build
         run: |
