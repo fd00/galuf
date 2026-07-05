@@ -19,7 +19,6 @@ jobs:
       - name: Prepare
         run: |
           export PATH=/usr/bin
-          cd /cygdrive/c/cygwin/tmp/ruby
           gem install fiddle
         shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
       - name: Clone
