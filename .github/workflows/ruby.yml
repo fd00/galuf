@@ -4,6 +4,11 @@ on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
+    inputs:
+      commit:
+        description: 'Commit hash of ruby/ruby to test (leave empty for latest default branch)'
+        required: false
+        type: string
   schedule:
     - cron: '0 19 * * *'
 
@@ -25,10 +30,18 @@ jobs:
         run: |
           export PATH=/usr/bin
           cd /cygdrive/c/cygwin/tmp
-          git clone --quiet --depth=1 https://github.com/ruby/ruby.git
-          cd ruby
+          if [ -n "$COMMIT" ]; then
+            git clone --quiet https://github.com/ruby/ruby.git
+            cd ruby
+            git checkout --quiet "$COMMIT"
+          else
+            git clone --quiet --depth=1 https://github.com/ruby/ruby.git
+            cd ruby
+          fi
           git log --max-count=1
         shell: C:\cygwin\bin\bash.exe --noprofile --norc -ex -o igncr -o pipefail '{0}'
+        env:
+          COMMIT: ${{ inputs.commit }}
       - name: Autogen
         run: |
           export PATH=/usr/bin
